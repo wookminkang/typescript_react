@@ -1,0 +1,15 @@
+.title {
+  font-size: 24px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.button-container button {
+  width: 100px;
+  height: 36px;
+  padding: 0
+}

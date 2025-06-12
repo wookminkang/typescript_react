@@ -1,0 +1,124 @@
+.diary-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.diary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.diary-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--color-text);
+}
+
+.write-button {
+  background-color: var(--color-accent);
+  color: white;
+  padding: 0.875rem 1.75rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.write-button:hover {
+  background-color: var(--color-text);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.diary-form-container {
+  margin-bottom: 3rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.diary-entries {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.diary-entry {
+  background-color: var(--color-beige);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.diary-entry:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.diary-date {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.date {
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.diary-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.edit-button,
+.delete-button {
+  padding: 0.625rem 1.25rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-button {
+  background-color: #f3f4f6;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.delete-button {
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.edit-button:hover {
+  background-color: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+.delete-button:hover {
+  background-color: #fecaca;
+  transform: translateY(-1px);
+}
+
+.diary-content {
+  color: var(--color-text);
+  line-height: 1.8;
+  white-space: pre-wrap;
+  font-size: 1.05rem;
+} 
