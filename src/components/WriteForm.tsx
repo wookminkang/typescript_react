@@ -1,32 +1,34 @@
 import { useState } from 'react';
 
 interface WriteFormProps {
-  onCancel: () => void;
   onSave: (content: string) => void;
+  onCancel: () => void;
 }
 
-const WriteForm = (props: WriteFormProps) => {
+export default function WriteForm({ onSave, onCancel }: WriteFormProps) {
+  const [content, setContent] = useState('');
 
-  const [content, setContent] = useState<string>('');
-
-
-  const handleSave = () => {
-    props.onSave(content);
-    setContent('');
-  }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (content.trim()) {
+      onSave(content);
+      setContent('');
+      onCancel();
+    }
+  };
 
   return (
-    <div className="write-form">
-      <div className="write-form-content">
-        <textarea 
-        onChange={(e) => setContent(e.target.value)}
+    <form onSubmit={handleSubmit} className="write-form">
+      <textarea
         value={content}
-        placeholder="내용을 입력하세요" />
-        <button onClick={handleSave}>저장</button>
-        <button onClick={props.onCancel}>취소</button>
+        onChange={(e) => setContent(e.target.value)}
+        placeholder="일기를 작성해주세요..."
+        className="write-textarea"
+      />
+      <div className="write-buttons">
+        <button type="submit" className="save-button">저장하기</button>
+        <button type="button" onClick={onCancel} className="cancel-button">취소</button>
       </div>
-    </div>
-  )
+    </form>
+  );
 }
-
-export default WriteForm;

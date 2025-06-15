@@ -1,0 +1,22 @@
+.sub-header {
+  position: relative;
+  padding: 10px;
+  background-color: var(--background-color);
+}
+
+.sub-header-left-container {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  bottom: 10px;
+  width: 26px;
+  height: 26px;
+}
+
+.sub-header-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-text);
+  margin: 0 auto;
+  text-align: center;
+}

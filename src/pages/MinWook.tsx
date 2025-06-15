@@ -1,66 +1,42 @@
 import './MinWook.css';
 import { useState } from 'react';
-import WriteForm from '../components/WriteForm';
+import MinwookWriteForm from '../components/MinwookWriteForm';
+import MinwookList from '../components/MinwookLIst';
 
-
-interface List {
+interface Item {
   id: number;
+  title: string;
   content: string;
 }
 
 
 export default function MinWook() {
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [list, setList] = useState<List[]>([]);
-  const [checked, setChecked] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [items, setItems] = useState<Item[]>([]);
 
 
-  // 저장 
-  const handleSave = (content: string) => {
-    setList([...list, {id: list.length + 1, content: content}]);
+  const addItem = () => {
+    setIsOpen((prev) => !prev);
   }
 
-  // 취소
-  const handleCancel = () => {
-    setIsOpen(false);
-  }
-
-  // 삭제
-  const handleDelete = (id: number) => {
-    setList(list.filter((item) => item.id !== id));
+  const handleSave = (item: Item) => {
+    console.log(item);
   }
 
   return (
     <>
       <div className="title">MinWook</div>
-        <div className='button-container'>
-          <button onClick={() => setIsOpen(true)}>작성하기</button>
-        </div>
-        <div className="content">
-          <p>
-            민욱일기장은 민욱이의 일기장입니다.
-            <input type="checkbox" onChange={() => setChecked(!checked)} /> 체크박스 {checked ? '체크됨' : '체크안됨'}
-          </p>
-
-        {isOpen && (
-          <WriteForm 
-          onCancel={handleCancel} 
-          onSave={handleSave} />
-        )}
-
-        <div className="list-container">
-          {list.map((item) => (
-            <div key={item.id} className="list-item">
-              <div className="list-item-content"> {item.id} ::: {item.content}</div>
-              <div className="list-item-button">
-                <button>수정</button>
-                <button onClick={() => handleDelete(item.id)}>삭제</button>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className='button-container'>
+        <button onClick={addItem}>{isOpen ? '닫기' : '작성하기'}</button>
       </div>
-    </> 
+      <div className="content">
+          {isOpen && <MinwookWriteForm onSave={handleSave} />}
+      </div>
+
+
+      <MinwookList list={items} />
+    </>
   )
+
 }

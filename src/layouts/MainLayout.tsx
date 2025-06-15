@@ -1,12 +1,18 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../components/Header';
+import SubHeader from '../components/Header/SubHeader';
 import './MainLayout.css';
 
 const MainLayout = () => {
+  const location = useLocation();
+  const isAuthPage =
+    location.pathname.includes('/signup') ||
+    location.pathname.includes('/login');
+
   return (
     <div className="layout">
-      <Header />
-      <main className="main-content">
+      {isAuthPage ? <Header /> : <Header />}
+      <main className={`main-content ${isAuthPage ? 'auth-page' : ''}`}>
         <div className="content-wrapper">
           <Outlet />
         </div>
@@ -15,4 +21,4 @@ const MainLayout = () => {
   );
 };
 
-export default MainLayout; 
+export default MainLayout;
