@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+
+
+
+.header {
+  background-color: $background-color;
+  .nav-list{
+    display: flex;
+    padding: 10px;
+
+    li{
+      &.active{
+        a {
+          color: $point-color;
+        }
+      }
+
+      a{
+        color: #fff;
+        padding:0 14px;
+        font-weight: 700;
+        font-size:1.1rem;
+      }      
+    }
+  }
+}

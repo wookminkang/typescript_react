@@ -1,0 +1,14 @@
+@import './variables.scss';
+
+
+.page-content-container {
+  padding: 20px;
+}
+
+.page-fixed-top-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--color-text);
+  text-align: left;
+  margin-bottom: 30px;
+}

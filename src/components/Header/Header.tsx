@@ -1,16 +1,22 @@
 import { Link } from 'react-router-dom';
-import './Header.css';
+import './Header.scss';
 
 const Header = () => {
   return (
     <header className="header">
       <nav className="header-nav">
         <ul className="nav-list">
-          <li>
+          <li className='active'>
             <Link to="/">홈</Link>
           </li>
           <li>
-            <Link to="/diary">일일업무보고</Link>
+            <Link to="/match">대회</Link>
+          </li>
+          <li>
+            <Link to="/match">랭킹</Link>
+          </li>
+          <li>
+            <Link to="/match">커뮤니티</Link>
           </li>
 
 

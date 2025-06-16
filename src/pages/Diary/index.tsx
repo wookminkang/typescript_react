@@ -1,4 +1,3 @@
-import './index.css';
 import { useState } from 'react';
 import WriteForm from '../../components/Diary/WriteForm';
 import List from '../../components/Diary/List';
