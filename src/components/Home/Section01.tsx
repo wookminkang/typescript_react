@@ -14,8 +14,7 @@ const Section01 = () => {
   const { data: leagueStatus, isLoading, error } = useQuery<LeagueStatus>({
     queryKey: ['leagueStatus'],
     queryFn: async () => {
-      const res = await axiosInstance.get('/personal/home/league/status');
-      console.log(res.data.data);
+      const res = await axiosInstance.get('/personal/home/league/status');      
       return res.data.data;
     }
   });
