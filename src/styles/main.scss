@@ -1,6 +1,5 @@
 @import './variables.scss';
 
-
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -25,8 +24,6 @@
   --card-background-color: #18171d;
 }
 
-
-
 // Reset
 * {
   margin: 0;
@@ -41,7 +38,14 @@ body {
   color: #333;
 }
 
-ul, ol{
+.layout {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+ul,
+ol {
   list-style: none;
 }
 
@@ -64,7 +68,7 @@ input {
 }
 
 label {
-  font-size: $action-title-size;  
+  font-size: $action-title-size;
 }
 
 button {
@@ -81,8 +85,11 @@ button {
 }
 
 button:disabled {
-  background-color: $disabled-color;
+  background-color: $card-background-color;
   cursor: not-allowed;
+  svg {
+    color: #aaa;
+  }
 }
 
 button:hover {
@@ -96,13 +103,13 @@ button:focus-visible {
 select {
   appearance: none;
   border: none;
-  outline: none;  
+  outline: none;
   font-size: $action-title-size;
   height: 45px;
   cursor: pointer;
 }
 
-.save-button{
+.save-button {
   background-color: $point-color;
   color: #fff;
   border: none;
@@ -113,10 +120,9 @@ select {
   margin-top: 20px;
 }
 
-
-.section01{
+.section01 {
   min-height: 100vh;
-  .section01-content-text{
+  .section01-content-text {
     margin: 20px 0;
     color: #fff;
     h2 {
@@ -131,89 +137,49 @@ select {
   }
 }
 
-
-.section02{
+.section02 {
   padding: 20px 0;
-  min-height: 100vh;
-  .section02-content{
-    .item-list {
+
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .item {
       display: flex;
-      overflow-x: auto;
-      gap: 20px; // 아이템 간 간격
-      padding: 20px 0;
-      -webkit-overflow-scrolling: touch; // iOS 스크롤 부드럽게
-      scrollbar-width: none; // Firefox 스크롤바 숨김
-      -ms-overflow-style: none; // IE/Edge 스크롤바 숨김
-      
-      &::-webkit-scrollbar {
-        display: none; // Chrome/Safari 스크롤바 숨김
-      }
-    
-      .item {
-        flex: 0 0 auto; // 아이템 크기 고정
-        min-width: 300px; // 최소 너비 설정
-        padding: 15px;
-        background: #17171B;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        .item-type{
-          font-size: 1.2rem;
-          font-weight: 700;
-          color: #fff;
-          margin-bottom: 10px;
-        }
-        .player-info-name{
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          .player-info-img{
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            overflow: hidden;
-            img{
-              width: 100%;
-            }
-          } 
-          .player-info-name-text{
-            font-size: 1rem;
-            font-weight: 500;
-            color: #fff;
-          }
-        }
-        .player-info-score{
-          margin-top: 10px;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          .player-info-score-text{
-            font-size: 1rem;
-            font-weight: 500;
-            color: #fff;
-          }
-        }
-      }
+      flex-direction: column;
+      gap: 10px;
+    }
+  }
+
+  .player-list {
+    display: flex;
+    gap: 10px;
+    .player-item {
+      width: 80vw;
+      gap: 10px;
+      border: 1px solid #fff;
+      padding: 10px;
+      border-radius: 10px;
     }
   }
 }
 
-
-.section03{
+.section03 {
   min-height: 100vh;
 }
 
-
-.section04{
+.section04 {
   min-height: 100vh;
 }
 
 .section {
-  margin-bottom: 20px;  
+  margin-bottom: 20px;
+  color: #fff;
 
   &.fade-in {
     opacity: 1;
     transform: translateY(0);
-    
   }
 }
 
@@ -235,7 +201,7 @@ select {
   padding: 20px;
   background: #fff;
   border-radius: 8px;
-  
+
   .skeleton-title {
     height: 24px;
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -263,7 +229,7 @@ select {
   }
 }
 
-img{
+img {
   width: 100%;
   height: 100%;
   object-fit: cover;

@@ -4,14 +4,7 @@ import { useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import { useNavigate } from 'react-router-dom';
 
-
-
-
-
-
-
 const Signup = () => {
-
   const navigate = useNavigate();
   // 이름
   const [name, setName] = useState<string>('');
@@ -30,13 +23,10 @@ const Signup = () => {
   // 이메일 도메인
   const [emailDomain, setEmailDomain] = useState<string>('self');
 
-  
-
   // 주소 찾기 완료
   const handleComplete = ({ address }: { address: string }) => {
     setAddress(address);
     setIsOpenPost(false);
-
   };
 
   // 주소 찾기 버튼 클릭
@@ -44,14 +34,19 @@ const Signup = () => {
     setIsOpenPost(true);
   };
 
-
   // 필수 입력 항목 체크
   const checkMustFill = () => {
-    if (name === '' || gender === '' || address === '' || phone === '' || email === '') {
+    if (
+      name === '' ||
+      gender === '' ||
+      address === '' ||
+      phone === '' ||
+      email === ''
+    ) {
       return false;
     }
     return true;
-  }
+  };
 
   // 리셋
   const resetForm = () => {
@@ -60,7 +55,7 @@ const Signup = () => {
     setAddress('');
     setAddressDetail('');
     setPhone('');
-  }
+  };
 
   // 저장 버튼
   const handleSave = () => {
@@ -73,18 +68,12 @@ const Signup = () => {
       phone: phone,
       email: email,
       emailDomain: emailDomain,
-    }
+    };
 
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
     resetForm();
     navigate('/');
-  }
-
-  
-
-
-
-
+  };
 
   return (
     <div className="signup-container">
@@ -228,7 +217,7 @@ const Signup = () => {
                 />
               </div>
 
-              { emailDomain !== 'self' && (
+              {emailDomain !== 'self' && (
                 <>
                   <div className="email-container-item email-container-item-at">
                     @
@@ -246,11 +235,15 @@ const Signup = () => {
                 </>
               )}
 
-
               <div className="email-container-item email-container-item-select">
-                <select name="email-domain" id="email-domain" value={emailDomain} onChange={(e) => {
+                <select
+                  name="email-domain"
+                  id="email-domain"
+                  value={emailDomain}
+                  onChange={(e) => {
                     setEmailDomain(e.target.value);
-                  }}>
+                  }}
+                >
                   <option value="self">직접입력</option>
                   <option value="naver.com">naver.com</option>
                   <option value="gmail.com">gmail.com</option>
@@ -262,7 +255,12 @@ const Signup = () => {
 
           {/* 저장 버튼 */}
           <div className="form-item">
-            <button type="button" className="save-button" disabled={!checkMustFill()} onClick={handleSave}>
+            <button
+              type="button"
+              className="save-button"
+              disabled={!checkMustFill()}
+              onClick={handleSave}
+            >
               저장
             </button>
           </div>

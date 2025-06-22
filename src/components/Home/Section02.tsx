@@ -3,43 +3,41 @@ import { useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axiosInstance from '../../api/axios';
 
-
-interface Item {
+interface List {
   type: string;
   achieveCnt: number;
   playerInfo: {
     area: string;
     areaCode: number;
     areaGroup: string;
-    areaGroupCode: number;
-    clubName: string;
-    count: number | null
+    club: string;
+    count: number;
     courseName: string;
     genderType: number;
     gradeType: number;
-    hole: number;
+    hole: string | null;
     memIdx: number;
-    name: string;
-    par: number;
+    nickName: string;
+    par: number | null;
     plyrIdx: number;
     profileImg: string;
     type: string;
     userName: string;
-  }[]
+  }[];
 }
-
-
-
-
 
 const Section02 = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
-  
 
-  const { data: list, isLoading, error, refetch } = useQuery({
+  const {
+    data: list,
+    isLoading,
+    error,
+    refetch,
+  } = useQuery<List[]>({
     queryKey: ['list'],
     queryFn: async () => {
       const res = await axiosInstance.get('personal/home/newRecord');
@@ -50,7 +48,6 @@ const Section02 = () => {
   });
 
   useEffect(() => {
-
     // 스크롤로 인한 inView 변경일 때만 실행
     if (inView) {
       console.log('Section02가 스크롤로 화면에 보입니다!');
@@ -63,42 +60,26 @@ const Section02 = () => {
       {inView && (
         <div className="section02-content">
           <img src="//image.smartscore.kr/releague/releague_thisYearEventRecord_tit.png" />
+          <div className="item-list">
+            {list?.map((item, index) => (
+              <div key={index} className="item">
+                <div className="item-text">
+                  <div>타입: {item.type}</div>
+                  <div>달성 횟수: {item.achieveCnt}</div>
+                  <div>선수 정보:</div>
 
-          <div className="i">
-            {list?.map((item: Item) => (              
-                <>
-                  {
-                    item.playerInfo.length > 0 && (
-                      <div className="item-list">
-                       {item.playerInfo.map((player: Item['playerInfo'][0]) => (
-                        <div className="item">
-
-                          <div className="item-type"> {item.type} {player?.count > 1 ? `${player.count}회` : `1회`}</div>
-                          <div className="player-info-name">
-                            <div className="player-info-img">
-                              <img src={`//image.smartscore.kr/${player.profileImg}`} alt={player.userName} />
-                            </div>
-                            <div className="player-info-name-text">
-                              {player.nickName}
-                            </div>
-                          </div>                      
-                          <div className="player-info-score">                            
-                            <div className="player-info-score-text">
-                              {player.area}                               
-                            </div>
-                            <div className="player-info-score-text">
-                              {player.courseName}
-                            </div>
-                            <div className="player-info-score-text">
-                              
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )
-                }
-                </>
+                  <div className="player-list">
+                    {item.playerInfo.map((player, playerIndex) => (
+                      <div key={playerIndex} className="player-item">
+                        <div>이름: {player.userName}</div>
+                        <div>닉네임: {player.nickName}</div>
+                        <div>클럽: {player.club}</div>
+                        <div>코스: {player.courseName}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>

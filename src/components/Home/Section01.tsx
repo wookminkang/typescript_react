@@ -1,41 +1,31 @@
-import { useQuery } from '@tanstack/react-query';
-import axiosInstance from '../../api/axios';
-
-interface LeagueStatus {
-  totalPlayer: number;
-  totalTeam: number;
-  regularLg: number;
-  playOffLg: number;
-  finalLg: boolean
-} 
+import { useAlertDialog } from '../../hooks/useAlertDialog';
 
 const Section01 = () => {
+  const { showAlert } = useAlertDialog();
 
-  const { data: leagueStatus, isLoading, error } = useQuery<LeagueStatus>({
-    queryKey: ['leagueStatus'],
-    queryFn: async () => {
-      const res = await axiosInstance.get('/personal/home/league/status');      
-      return res.data.data;
-    }
-  });
+  const handleAlertClick = () => {
+    showAlert('알림', 'AlertDialog가 열렸습니다!', () => {
+      console.log('AlertDialog 확인됨');
+    });
+  };
 
-  if (isLoading) return <div>로딩 중...</div>;
-  if (error) return <div>에러가 발생했습니다</div>;
+  const handleSaveClick = () => {
+    showAlert('저장 완료', '데이터가 성공적으로 저장되었습니다.', () => {
+      console.log('저장 완료 처리');
+    });
+  };
 
- 
+  const handleDeleteClick = () => {
+    showAlert('삭제 확인', '정말 삭제하시겠습니까?', () => {
+      console.log('삭제 처리');
+    });
+  };
 
   return (
     <div className="section section01">
-      <div className="section01-content">
-        <img src="https://image.smartscore.kr/league/main/2025/league-main-2025-mens-title.png" />
-        <div className="section01-content-text">
-          <h2>
-            현재까지 등록된 선수는 <br /> 
-            <span>{leagueStatus?.totalPlayer}</span>명
-          </h2>          
-        </div>
-        <img src="https://image.smartscore.kr/league/main/2025/league-main-2025-thumbnail.png" />
-      </div>
+      <button onClick={handleAlertClick}>AlertDialog 열기</button>
+      <button onClick={handleSaveClick}>저장 완료 알림</button>
+      <button onClick={handleDeleteClick}>삭제 확인</button>
     </div>
   );
 };
