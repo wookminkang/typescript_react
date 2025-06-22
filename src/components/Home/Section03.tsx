@@ -17,11 +17,12 @@ const Section03 = () => {
     threshold: 0.1,
   });
 
-  const { data, isLoading, error, refetch } = useQuery<LeagueStatus>({
+  const { data:list, isLoading, error, refetch } = useQuery<LeagueStatus>({
     queryKey: ['leagueStatus'],
     queryFn: async () => {
       const response = await axiosInstance.get('/personal/home/league/status');
-      return response.data;
+      console.log(response.data.data);
+      return response.data.data;
     },
     enabled: false,
   });
@@ -42,10 +43,7 @@ const Section03 = () => {
               {error ? (
                 <div className="error-message">에러가 발생했습니다</div>
               ) : (
-                <div className="league-status">
-                  <h2>리그 상태</h2>
-                  <p>리그명: {data?.name}</p>
-                  <p>상태: {data?.status}</p>
+                <div className="">
                 </div>
               )}
             </div>

@@ -41,6 +41,7 @@ const Section02 = () => {
     queryKey: ['list'],
     queryFn: async () => {
       const res = await axiosInstance.get('personal/home/newRecord');
+      console.log(res.data.data);
       return res.data.data;
     },
     enabled: false,
