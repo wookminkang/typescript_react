@@ -3,10 +3,10 @@ import './Header.scss';
 
 const Header = () => {
   return (
-    <header className="header">
+    <header className="headerf">
       <nav className="header-nav">
         <ul className="nav-list">
-          <li className='active'>
+          {/* <li className='active'>
             <Link to="/">홈</Link>
           </li>
           <li>
@@ -17,10 +17,9 @@ const Header = () => {
           </li>
           <li>
             <Link to="/match">커뮤니티</Link>
-          </li>
+          </li> */}
 
-
-{/*           
+          {/*           
           <li>
             <Link to="/diary">나의 일기장</Link>
           </li>
@@ -36,10 +35,10 @@ const Header = () => {
           <li>
             <Link to="/minwook1">민욱일기장1</Link>
           </li> */}
-        </ul> 
+        </ul>
       </nav>
     </header>
   );
 };
 
-export default Header; 
+export default Header;

@@ -1,20 +1,32 @@
+import { useEffect, useState } from 'react';
 import './index.scss';
-import Section01 from '../../components/Home/Section01';
-import Section02 from '../../components/Home/Section02';
-import Section03 from '../../components/Home/Section03';
-import Section04 from '../../components/Home/Section04';
+import Intro from '../../components/Home/Intro';
+import List from '../../components/Home/List';
 
+const Home = () => {
+  const [hasSeenIntro, setHasSeenIntro] = useState<boolean>(false);
 
+  useEffect(() => {
+    const introCheck = localStorage.getItem('introCheck');
+    if (introCheck) {
+      setHasSeenIntro(true);
+    }
+  }, []);
 
+  const handleIntroComplete = () => {
+    localStorage.setItem('introCheck', 'true');
+    setHasSeenIntro(true);
+  };
 
-const Home = () => { 
-  
   return (
     <>
-      <Section01 />
-      <Section02 />
-      <Section03 />
-      <Section04 />    
+      {hasSeenIntro ? (
+        <>
+          <List />
+        </>
+      ) : (
+        <Intro onComplete={handleIntroComplete} />
+      )}
     </>
   );
 };

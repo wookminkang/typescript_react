@@ -1,0 +1,26 @@
+.add-container {
+  position: relative;
+  padding: 10px;
+}
+
+.add-header {
+  position: relative;
+  text-align: left;
+  padding: 10px;
+
+  button {
+    text-align: left;
+    color: #fff;
+    height: 44px;
+    border-radius: 10px;
+  }
+}
+
+.search-container {
+  width: 100%;
+  position: relative;
+}
+
+.search-result-container {
+  padding: 10px 0;
+}
